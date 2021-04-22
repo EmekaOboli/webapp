@@ -77,32 +77,32 @@ def submit_form():
         return 'try again'
 
 
-def write_to_file(data):
-    with open('../Desktop/lawplugx/database.txt', mode='a') as database:
-        name = data["name"]
-        email = data["email"]
-        subject = data["subject"]
-        retainer_plan = data["retainer plan"]
-        message = data["message"]
-        file = database.write(f'\n{name},{email},{retainer_plan},{subject},{message}')
+# def write_to_file(data):
+    # with open('../home/lawplug/database.txt', mode='a') as database:
+        # name = data["name"]
+        # email = data["email"]
+        # subject = data["subject"]
+        # retainer_plan = data["retainer plan"]
+        # message = data["message"]
+        # file = database.write(f'\n{name},{email},{retainer_plan},{subject},{message}')
 
 
 def write_to_csv(data):
-    with open('../Desktop/lawplugx/database.csv', mode='a') as database2:
+    with open('database.csv', mode='a') as database2:
         name = data["name"]
         email = data["email"]
-        retainer_plan = data["retainer plan"]
+        # retainer_plan = data["retainer plan"]
         subject = data["subject"]
         message = data["message"]
         csv_writer = csv.writer(database2, delimiter='|', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        csv_writer.writerow(['NAME', 'EMAIL', 'RETAINER PLAN', 'SUBJECT', 'MESSAGE'])
-        csv_writer.writerow([name, email, retainer_plan, subject, message])
+        csv_writer.writerow(['NAME', 'EMAIL', 'SUBJECT', 'MESSAGE'])
+        csv_writer.writerow([name, email, subject, message])
 
 
-# @app.route("/thankyou.html")
-# def about():
-#     print(f"{datetime.now():%d-%m-%y %H:%M:%S}")
-#     return render_template('thankyou.html')
+@app.route("/thankyou.html")
+def about():
+    print(f"{datetime.now():%d-%m-%y %H:%M:%S}")
+    return render_template('thankyou.html')
 
 if __name__ == '__main__':
     app.run()
